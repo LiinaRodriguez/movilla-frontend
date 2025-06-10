@@ -1,10 +1,13 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Home() {
   const router = useRouter()
+  const [selectedRoute, setSelectedRoute] = useState<string | null>(null)
 
   const handleLogout = async () => {
     try {
@@ -17,23 +20,111 @@ export default function Home() {
     }
   }
 
+  // Datos de ejemplo - estos vendrían de tu API
+  const routes = [
+    { id: 'R1', name: 'Ruta Centro - Norte', status: 'En tiempo' },
+    { id: 'R2', name: 'Ruta Este - Oeste', status: '5 min retraso' },
+    { id: 'R3', name: 'Circular Sur', status: 'En tiempo' },
+  ]
+
+  const favorites = [
+    { id: 'F1', name: 'Casa - Trabajo', route: 'R1' },
+    { id: 'F2', name: 'Casa - Universidad', route: 'R2' },
+  ]
+
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Bienvenido</h1>
-        <Button onClick={handleLogout} variant="outline">
-          Cerrar sesión
-        </Button>
-      </div>
-      <div className="grid gap-6">
-        {/* Aquí puedes agregar el contenido principal de tu aplicación */}
-        <div className="p-4 border rounded-lg">
-          <h2 className="text-lg font-semibold mb-2">Dashboard</h2>
-          <p className="text-muted-foreground">
-            Este es el panel principal de tu aplicación.
-          </p>
+    <div className="flex min-h-screen flex-col">
+      {/* Header */}
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+          <span className="font-bold">Movilla</span>
+          <Button onClick={handleLogout} variant="ghost">
+            Cerrar Sesión
+          </Button>
         </div>
-      </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container py-6 md:py-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Rutas Activas */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Rutas Activas</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4">
+                {routes.map((route) => (
+                  <div
+                    key={route.id}
+                    className={`flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-colors hover:bg-accent ${selectedRoute === route.id ? 'border-primary' : ''
+                      }`}
+                    onClick={() => setSelectedRoute(route.id)}
+                  >
+                    <div>
+                      <h3 className="font-medium">{route.name}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Status: {route.status}
+                      </p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Ver detalles
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Rutas Favoritas */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Mis Rutas Favoritas</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4">
+                {favorites.map((favorite) => (
+                  <div
+                    key={favorite.id}
+                    className="flex items-center justify-between rounded-lg border p-4"
+                  >
+                    <div>
+                      <h3 className="font-medium">{favorite.name}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Ruta:{' '}
+                        {routes.find((r) => r.id === favorite.route)?.name}
+                      </p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Iniciar viaje
+                    </Button>
+                  </div>
+                ))}
+                <Button className="w-full">
+                  Agregar nueva ruta favorita
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mapa o Información Detallada */}
+          {selectedRoute && (
+            <Card className="md:col-span-2">
+              <CardHeader>
+                <CardTitle>Detalles de la Ruta</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[300px] rounded-lg border bg-accent/50 flex items-center justify-center">
+                  <p className="text-muted-foreground">
+                    Aquí iría el mapa o información detallada de la ruta{' '}
+                    {selectedRoute}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </main>
     </div>
   )
 }

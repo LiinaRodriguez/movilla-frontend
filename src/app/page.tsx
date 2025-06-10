@@ -1,103 +1,82 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-b from-primary/10 to-background">
+      {/* Nav */}
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-14 max-w-screen-2xl items-center">
+          <div className="flex flex-1 items-center justify-between">
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="font-bold">Movilla</span>
+            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/login">
+                <Button variant="ghost">Iniciar Sesión</Button>
+              </Link>
+              <Link href="/signup">
+                <Button>Crear Cuenta</Button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="container pt-24 sm:pt-32">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl">
+            Tu guía de transporte en la ciudad
+          </h1>
+          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+            Descubre las mejores rutas, conoce los horarios en tiempo real y
+            planifica tus viajes de manera eficiente.
+          </p>
+          <div className="flex flex-col gap-4 min-[400px]:flex-row">
+            <Link href="/signup">
+              <Button size="lg" className="w-full min-[400px]:w-auto">
+                Comenzar ahora
+              </Button>
+            </Link>
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full min-[400px]:w-auto"
+            >
+              Ver rutas disponibles
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="container space-y-8 py-24 sm:py-32">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+          <div className="flex flex-col gap-2 rounded-lg border p-6">
+            <h3 className="text-xl font-bold">Rutas en tiempo real</h3>
+            <p className="text-muted-foreground">
+              Monitorea la ubicación de los buses y calcula tiempos de llegada
+              precisos
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 rounded-lg border p-6">
+            <h3 className="text-xl font-bold">Planificador de viajes</h3>
+            <p className="text-muted-foreground">
+              Encuentra la mejor ruta para llegar a tu destino con múltiples
+              opciones
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 rounded-lg border p-6">
+            <h3 className="text-xl font-bold">Notificaciones</h3>
+            <p className="text-muted-foreground">
+              Recibe alertas sobre demoras, cambios de ruta o interrupciones del
+              servicio
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
