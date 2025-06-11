@@ -4,22 +4,22 @@ import type { NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, password } = body;
+    const { email, password, nombreCompleto } = body;
 
-    if (!email || !password) {
+    if (!email || !password || !nombreCompleto) {
       return NextResponse.json(
-        { error: "Email y contraseña son requeridos" },
+        { error: "Email, nombre completo y contraseña son requeridos" },
         { status: 400 }
       );
     }
 
     // Llamada al API backend para registro
-    const response = await fetch("http://localhost:8000/api/signup", {
+    const response = await fetch("https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, nombreCompleto }),
     });
 
     if (!response.ok) {

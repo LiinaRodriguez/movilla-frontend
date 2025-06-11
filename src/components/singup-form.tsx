@@ -18,6 +18,7 @@ export function SignUpForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -45,6 +46,7 @@ export function SignUpForm({
         },
         body: JSON.stringify({
           email: formData.email,
+          nombreCompleto: formData.name,
           password: formData.password
         }),
       })
@@ -80,6 +82,18 @@ export function SignUpForm({
         <CardContent>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
+               <div className="grid gap-3">
+                <Label htmlFor="name">Nombre</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Tu nombre"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -114,6 +128,7 @@ export function SignUpForm({
                   disabled={isLoading}
                 />
               </div>
+             
               {error && (
                 <div className="text-destructive text-sm">
                   {error}
