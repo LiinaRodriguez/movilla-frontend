@@ -10,14 +10,9 @@ export default function Home() {
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null)
 
   const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-      })
-      router.push('/login')
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error)
-    }
+    // Llama al backend para eliminar la cookie 'token' (httpOnly)
+    await fetch('/api/auth/logout', { method: 'POST' });
+    router.push('/login');
   }
 
   // Datos de ejemplo - estos vendrían de tu API
@@ -37,8 +32,8 @@ export default function Home() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
-          <span className="font-bold">Movilla</span>
-          <Button onClick={handleLogout} variant="ghost">
+          <span className="font-bold ">Movilla</span>
+          <Button className='pointer' onClick={handleLogout} variant="ghost">
             Cerrar Sesión
           </Button>
         </div>
