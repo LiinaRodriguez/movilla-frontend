@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
     // Llamada a la API de producción
     const response = await fetch(
-      "https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/login",
+      "https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/usuarios/login",
       {
         method: "POST",
         headers: {
