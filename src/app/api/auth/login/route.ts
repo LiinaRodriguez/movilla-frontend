@@ -13,24 +13,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Aquí deberías hacer la llamada a tu API backend
-    const response = await fetch("http://localhost:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    // Llamada a la API de producción
+    const response = await fetch(
+      "https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+
+    let data;
+    try {
+      const text = await response.text();
+      data = text ? JSON.parse(text) : {};
+    } catch (error) {
+      console.error("Error parsing response:", error);
+      return NextResponse.json(
+        { error: "Error al procesar la respuesta del servidor" },
+        { status: 500 }
+      );
+    }
 
     if (!response.ok) {
-      const data = await response.json();
       return NextResponse.json(
         { error: data.message || "Error al iniciar sesión" },
         { status: 401 }
       );
     }
-
-    const data = await response.json();
 
     // Crear la respuesta con el usuario
     const jsonResponse = NextResponse.json(
