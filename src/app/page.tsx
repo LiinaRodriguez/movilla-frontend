@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/10 to-background">
       {/* Nav */}
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="px-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-3">
         <div className="container flex h-14 max-w-screen-2xl items-center">
           <div className="flex flex-1 items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
@@ -24,7 +24,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="container pt-24 sm:pt-32">
+      <section className="px-4 container pt-24 sm:pt-32">
         <div className="flex flex-col items-center gap-4 text-center">
           <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl">
             Tu guía de transporte en la ciudad
@@ -51,10 +51,10 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="container space-y-8 py-24 sm:py-32">
+      <section className="px-4 container space-y-8 py-24 sm:py-32">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
           <div className="flex flex-col gap-2 rounded-lg border p-6">
-            <h3 className="text-xl font-bold">Rutas en tiempo real</h3>
+            <h3 className="text-xl font-bold">Rutas actualizadas</h3>
             <p className="text-muted-foreground">
               Monitorea la ubicación de los buses y calcula tiempos de llegada
               precisos
