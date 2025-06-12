@@ -11,7 +11,7 @@ export default function Home() {
 
   const handleLogout = async () => {
     // Llama al backend para eliminar la cookie 'token' (httpOnly)
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
     router.push('/login');
   }
 
