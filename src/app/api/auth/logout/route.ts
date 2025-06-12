@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   // Elimina la cookie 'token' estableciéndola expirada
   const response = NextResponse.json({ message: "Logout exitoso" });
   response.cookies.set({
