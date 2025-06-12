@@ -10,8 +10,11 @@ export default function Home() {
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null)
 
   const handleLogout = async () => {
-    // Llama al backend para eliminar la cookie 'token' (httpOnly)
-    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    // Llama directamente al backend para cerrar sesión (producción)
+    await fetch('https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/usuarios/logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
     router.push('/login');
   }
 
