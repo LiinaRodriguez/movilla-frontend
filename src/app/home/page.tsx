@@ -17,9 +17,9 @@ export default function Home() {
 
   // Datos de ejemplo - estos vendrían de tu API
   const routes = [
-    { id: 'R1', name: 'Ruta Centro - Norte', status: 'En tiempo' },
-    { id: 'R2', name: 'Ruta Este - Oeste', status: '5 min retraso' },
-    { id: 'R3', name: 'Circular Sur', status: 'En tiempo' },
+    { id: 'R1', name: 'Ruta 01 Madrid - Super Gas', status: '-' },
+    { id: 'R2', name: 'Ruta 02 Hospital - Madrid', status: '5 min retraso' },
+    { id: 'R3', name: 'Ruta 03 Covisan - Retiro - La madrid', status: 'En tiempo' },
   ]
 
   const favorites = [
