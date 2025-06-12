@@ -10,7 +10,6 @@ export default function Home() {
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null)
 
   const handleLogout = async () => {
-    router.push('/login');
     
     await fetch('https://movilla-hwh8a0hwepayd2f2.canadacentral-01.azurewebsites.net/api/usuarios/logout', {
       method: 'POST',
